@@ -1,4 +1,4 @@
-/* SecurIoT i18n — plain dictionary objects, no external library needed at this scale. */
+/* SecurIoT i18n: plain dictionary objects, no external library needed at this scale. */
 (function () {
   "use strict";
 
@@ -7,7 +7,7 @@
   var DICTIONARIES = {
     "es-419": {
       html_lang: "es-419",
-      doc_title: "SecurIoT — Seguridad patrimonial industrial en tiempo real",
+      doc_title: "SecurIoT: seguridad patrimonial industrial en tiempo real",
       skip_link: "Saltar al contenido principal",
       nav_toggle: "Abrir menú",
       nav_how: "Cómo funciona",
@@ -78,7 +78,7 @@
 
     "en-US": {
       html_lang: "en-US",
-      doc_title: "SecurIoT — Real-time industrial perimeter security",
+      doc_title: "SecurIoT: real-time industrial perimeter security",
       skip_link: "Skip to main content",
       nav_toggle: "Open menu",
       nav_how: "How it works",

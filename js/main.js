@@ -1,4 +1,4 @@
-/* SecurIoT landing — interaction layer: mobile nav, language toggle, a11y announcer. */
+/* SecurIoT landing: interaction layer for mobile nav, language toggle, a11y announcer. */
 (function () {
   "use strict";
 
