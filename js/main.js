@@ -8,7 +8,7 @@
     var dict = i18n.dictionaries[locale];
     if (!dict) return;
 
-    document.documentElement.setAttribute("lang", locale === "en-US" ? "en" : "es-419");
+    document.documentElement.setAttribute("lang", locale);
     document.documentElement.setAttribute("data-locale", locale);
     document.title = dict.doc_title;
 
@@ -22,11 +22,12 @@
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
 
-    var langToggle = document.getElementById("lang-toggle");
-    if (langToggle) {
-      var mark = langToggle.querySelector("[aria-hidden]");
-      if (mark) mark.textContent = locale === "en-US" ? "EN" : "ES";
-      langToggle.setAttribute("aria-pressed", locale === "en-US" ? "true" : "false");
+    var langSwitch = document.getElementById("lang-switch");
+    if (langSwitch) {
+      langSwitch.setAttribute("aria-label", dict.lang_selector_group_label);
+      langSwitch.querySelectorAll("[data-lang]").forEach(function (btn) {
+        btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === locale ? "true" : "false");
+      });
     }
   }
 
@@ -39,15 +40,18 @@
     var current = i18n.getLocale();
     applyLocale(current);
 
-    var toggle = document.getElementById("lang-toggle");
-    if (!toggle) return;
+    var langSwitch = document.getElementById("lang-switch");
+    if (!langSwitch) return;
 
-    toggle.addEventListener("click", function () {
-      var next = i18n.other(document.documentElement.getAttribute("data-locale") || current);
-      current = next;
-      i18n.setLocale(next);
-      applyLocale(next);
-      announce(i18n.dictionaries[next].lang_toggle_announce);
+    langSwitch.querySelectorAll("[data-lang]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var next = btn.getAttribute("data-lang");
+        if (next === (document.documentElement.getAttribute("data-locale") || current)) return;
+        current = next;
+        i18n.setLocale(next);
+        applyLocale(next);
+        announce(i18n.dictionaries[next].lang_toggle_announce);
+      });
     });
   }
 
