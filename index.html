@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="es-419" data-locale="es-419">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SecurIoT: seguridad patrimonial industrial en tiempo real</title>
+  <meta name="description" content="SecurIoT detecta, valida y responde a intrusiones en tiempo real dentro de instalaciones industriales y logísticas, con sensores IoT, edge computing y un dashboard centralizado." />
+  <meta name="theme-color" content="#12151a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">
+    <span data-i18n="skip_link">Saltar al contenido principal</span>
+  </a>
+
+  <div id="a11y-announcer" class="visually-hidden" role="status" aria-live="polite"></div>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="#top" aria-label="SecurIoT: inicio">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" focusable="false">
+            <path d="M12 2 3 5.5V11c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5.5L12 2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="12" cy="11.2" r="2.4" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          </svg>
+        </span>
+        <span class="brand__name">Secur<span class="brand__accent">IoT</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="visually-hidden" data-i18n="nav_toggle">Abrir menú</span>
+        <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Principal">
+        <ul>
+          <li><a href="#como-funciona" data-i18n="nav_how">Cómo funciona</a></li>
+          <li><a href="#para-quien" data-i18n="nav_for_whom">Para quién es</a></li>
+          <li><a href="#perimetro" data-i18n="nav_dashboard">Panel</a></li>
+          <li><a href="#proyecto" data-i18n="nav_about">El proyecto</a></li>
+        </ul>
+      </nav>
+
+      <div id="lang-switch" class="lang-switch" role="group" aria-label="Selector de idioma">
+        <button id="lang-btn-es" class="lang-switch__btn" type="button" data-lang="es-419" aria-pressed="true">ES</button>
+        <button id="lang-btn-en" class="lang-switch__btn" type="button" data-lang="en-US" aria-pressed="false">EN</button>
+      </div>
+      <div class="site-header__actions">
+        <a class="btn btn--ghost btn--small" href="https://securiot.juan-tech.com" data-i18n="nav_cta">Iniciar sesión</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="hero__scene" aria-hidden="true">
+        <svg class="hero__plan" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(238,241,244,0.045)" stroke-width="1"/>
+            </pattern>
+            <radialGradient id="fov" cx="0%" cy="50%" r="75%">
+              <stop offset="0%" stop-color="#f5a623" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <rect width="1200" height="760" fill="url(#grid)"/>
+
+          <!-- Perimeter polygon (facility site plan) -->
+          <polygon points="150,120 760,90 1080,240 1040,560 480,660 160,540 110,300"
+            fill="none" stroke="rgba(245,166,35,0.55)" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+
+          <!-- Interior structures -->
+          <rect x="330" y="240" width="220" height="140" fill="none" stroke="rgba(238,241,244,0.28)" stroke-width="1.2"/>
+          <rect x="600" y="330" width="160" height="200" fill="none" stroke="rgba(238,241,244,0.28)" stroke-width="1.2"/>
+          <line x1="330" y1="380" x2="760" y2="380" stroke="rgba(238,241,244,0.16)" stroke-width="1"/>
+
+          <!-- Camera + sweeping field of view -->
+          <g class="fov-sweep" transform-origin="230 300">
+            <polygon points="230,300 620,140 620,470" fill="url(#fov)"/>
+          </g>
+          <circle cx="230" cy="300" r="7" fill="#12151a" stroke="#f5a623" stroke-width="2"/>
+
+          <!-- Sensor nodes with pulse rings -->
+          <g class="sensor-node" transform="translate(760,90)">
+            <circle r="14" class="sensor-node__ring" fill="none" stroke="#f5a623" stroke-width="1.4"/>
+            <circle r="4.5" fill="#f5a623"/>
+          </g>
+          <g class="sensor-node sensor-node--delay1" transform="translate(1040,560)">
+            <circle r="14" class="sensor-node__ring" fill="none" stroke="#f5a623" stroke-width="1.4"/>
+            <circle r="4.5" fill="#f5a623"/>
+          </g>
+          <g class="sensor-node sensor-node--delay2" transform="translate(480,660)">
+            <circle r="14" class="sensor-node__ring" fill="none" stroke="#eef1f4" stroke-width="1.4"/>
+            <circle r="4.5" fill="#eef1f4"/>
+          </g>
+          <g class="sensor-node sensor-node--alert" transform="translate(160,540)">
+            <circle r="14" class="sensor-node__ring sensor-node__ring--alert" fill="none" stroke="#ef4444" stroke-width="1.6"/>
+            <circle r="4.5" fill="#ef4444"/>
+          </g>
+        </svg>
+        <div class="hero__scrim"></div>
+      </div>
+
+      <div class="wrap hero__content">
+        <h1 data-i18n-html="hero_title">Vigila el perímetro.<br>Responde antes que el intruso.</h1>
+        <p class="hero__subhead" data-i18n="hero_subhead">SecurIoT detecta personas en accesos y zonas restringidas, valida si están autorizadas y activa la respuesta en el mismo instante, no al día siguiente cuando alguien revisa la grabación.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="https://securiot.juan-tech.com" data-i18n="hero_cta_primary">Empezar ahora</a>
+          <a class="btn btn--ghost" href="#como-funciona" data-i18n="hero_cta_secondary">Ver cómo funciona</a>
+        </div>
+      </div>
+
+      <div class="hero__status" role="group" aria-label="Estado ilustrativo de zonas monitoreadas">
+        <p class="hero__status-caption" data-i18n="hero_status_caption">Vista ilustrativa de un perímetro bajo monitoreo SecurIoT</p>
+        <ul class="status-strip">
+          <li class="status-chip"><span class="status-chip__dot status-chip__dot--ok" aria-hidden="true"></span><span class="mono" data-i18n="status_zone_a">ZONA A · ALMACÉN · OK</span></li>
+          <li class="status-chip"><span class="status-chip__dot status-chip__dot--ok" aria-hidden="true"></span><span class="mono" data-i18n="status_zone_b">ZONA B · CARGA/DESCARGA · OK</span></li>
+          <li class="status-chip status-chip--alert"><span class="status-chip__dot status-chip__dot--alert" aria-hidden="true"></span><span class="mono" data-i18n="status_zone_c">ZONA C · PERÍMETRO NORTE · ALERTA</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="problem" aria-labelledby="problem-title">
+      <div class="wrap problem__grid">
+        <div class="problem__before">
+          <h2 id="problem-title" data-i18n="problem_before_title">Hoy: vigilancia que reacciona tarde</h2>
+          <p data-i18n="problem_before_body">Guardias humanos y cámaras que solo se revisan después del hecho. El intruso ya salió de la instalación para cuando alguien vuelve a ver la grabación.</p>
+          <ul class="problem__list">
+            <li data-i18n="problem_before_1">Rondas físicas que no cubren todo el perímetro a la vez</li>
+            <li data-i18n="problem_before_2">Grabación que se revisa después del incidente, no durante</li>
+            <li data-i18n="problem_before_3">Sistemas avanzados priceados para grandes corporaciones</li>
+          </ul>
+        </div>
+        <div class="problem__divider" aria-hidden="true"></div>
+        <div class="problem__after">
+          <h2 data-i18n="problem_after_title">Con SecurIoT: detección y respuesta en el instante</h2>
+          <p data-i18n="problem_after_body">Sensores y cámara en el perímetro, procesamiento en el borde y una nube centralizada que valida accesos y activa la respuesta sin esperar revisión humana.</p>
+          <ul class="problem__list problem__list--accent">
+            <li data-i18n="problem_after_1">Monitoreo casi en tiempo real de cada zona y dispositivo</li>
+            <li data-i18n="problem_after_2">Alerta automática apenas se detecta una intrusión</li>
+            <li data-i18n="problem_after_3">Costo pensado para la mediana empresa industrial, no solo la grande</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="pipeline" aria-labelledby="pipeline-title">
+      <div class="wrap">
+        <h2 id="pipeline-title" data-i18n="pipeline_title">De la cámara al protocolo de respuesta, en cuatro pasos</h2>
+        <ol class="pipeline__steps">
+          <li class="pipeline__step">
+            <span class="pipeline__index mono" aria-hidden="true">01</span>
+            <h3 data-i18n="pipeline_1_title">Detectar</h3>
+            <p data-i18n="pipeline_1_body">La cámara identifica personas y objetos en el perímetro, con seguimiento pan-tilt del punto de interés.</p>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__index mono" aria-hidden="true">02</span>
+            <h3 data-i18n="pipeline_2_title">Validar</h3>
+            <p data-i18n="pipeline_2_body">El Edge API procesa localmente y valida en tiempo real si el ingreso está autorizado para esa zona.</p>
+          </li>
+          <li class="pipeline__step pipeline__step--emphasis">
+            <span class="pipeline__index mono" aria-hidden="true">03</span>
+            <h3 data-i18n="pipeline_3_title">Responder</h3>
+            <p data-i18n="pipeline_3_body">Ante una intrusión detectada: alarma local, notificación inmediata al personal de seguridad y a los responsables designados por la empresa, sin esperar revisión manual.</p>
+          </li>
+          <li class="pipeline__step">
+            <span class="pipeline__index mono" aria-hidden="true">04</span>
+            <h3 data-i18n="pipeline_4_title">Registrar</h3>
+            <p data-i18n="pipeline_4_body">Cada evento queda trazable en un historial auditable, listo para investigación interna o reporte a autoridades y aseguradoras.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="para-quien" class="stakeholders" aria-labelledby="stakeholders-title">
+      <div class="wrap">
+        <h2 id="stakeholders-title" data-i18n="stakeholders_title">Pensado para las dos personas que deciden</h2>
+        <div class="stakeholders__grid">
+          <article class="stakeholder-card">
+            <h3 data-i18n="stakeholder_admin_title">Administrador de seguridad</h3>
+            <p data-i18n="stakeholder_admin_body">Visibilidad centralizada del estado de zonas, dispositivos y alertas de todas las sedes desde un solo panel, sin depender solo de rondas físicas.</p>
+          </article>
+          <article class="stakeholder-card stakeholder-card--wide">
+            <h3 data-i18n="stakeholder_owner_title">Gerente o dueño de la pyme industrial</h3>
+            <p data-i18n="stakeholder_owner_body">Evidencia trazable y auditable de cada incidente para reducir exposición legal y agilizar el reporte a aseguradoras, con un modelo de suscripción por sede pensado para el presupuesto de una mediana empresa, no el de una gran corporación.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="perimetro" class="dashboard-glimpse" aria-labelledby="dashboard-title">
+      <div class="wrap dashboard-glimpse__grid">
+        <div class="dashboard-glimpse__copy">
+          <h2 id="dashboard-title" data-i18n="dashboard_title">Una sola cuenta, todas las sedes</h2>
+          <p data-i18n="dashboard_body">El dashboard Web centraliza zonas, dispositivos y alertas de cada planta o almacén. La aplicación Mobile llega después, para el personal de vigilancia en ronda.</p>
+          <p class="dashboard-glimpse__note" data-i18n="dashboard_note">Vista conceptual del panel: ilustrativa, no una captura del producto final.</p>
+        </div>
+        <div class="dashboard-mock" role="img" aria-label="Vista conceptual del panel de control de SecurIoT, mostrando tres sedes con estado de zonas y una alerta activa en la Planta Norte">
+          <div class="dashboard-mock__bar">
+            <span class="mono">SECURIOT · <span data-i18n="dashboard_mock_panel">PANEL</span></span>
+            <span class="mono dashboard-mock__live">● <span data-i18n="dashboard_mock_live">EN VIVO</span></span>
+          </div>
+          <div class="dashboard-mock__body">
+            <div class="dashboard-mock__site">
+              <span class="mono" data-i18n="dashboard_mock_site_a">PLANTA NORTE</span>
+              <span class="dashboard-mock__pill dashboard-mock__pill--alert" data-i18n="dashboard_mock_alert">1 ALERTA</span>
+            </div>
+            <div class="dashboard-mock__site">
+              <span class="mono" data-i18n="dashboard_mock_site_b">ALMACÉN CENTRAL</span>
+              <span class="dashboard-mock__pill dashboard-mock__pill--ok" data-i18n="dashboard_mock_ok">OK</span>
+            </div>
+            <div class="dashboard-mock__site">
+              <span class="mono" data-i18n="dashboard_mock_site_c">CENTRO DE DISTRIBUCIÓN</span>
+              <span class="dashboard-mock__pill dashboard-mock__pill--ok" data-i18n="dashboard_mock_ok">OK</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyecto" class="about" aria-labelledby="about-title">
+      <div class="wrap about__inner">
+        <h2 id="about-title" data-i18n="about_title">Sobre el proyecto</h2>
+        <p data-i18n="about_body">SecurIoT es el producto de Centinela Labs, desarrollado como proyecto final del curso Desarrollo de Soluciones IoT en la Universidad Peruana de Ciencias Aplicadas (UPC). El foco inicial es la mediana empresa industrial y logística de Lima Metropolitana.</p>
+      </div>
+    </section>
+
+    <section class="final-cta" aria-labelledby="final-cta-title">
+      <div class="wrap final-cta__inner">
+        <h2 id="final-cta-title" data-i18n="final_cta_title">Deja de revisar grabaciones. Empieza a responder en el instante.</h2>
+        <a class="btn btn--primary btn--large" href="https://securiot.juan-tech.com" data-i18n="final_cta_button">Empezar ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <div class="site-footer__brand">
+        <span class="brand__name">Secur<span class="brand__accent">IoT</span></span>
+        <p data-i18n="footer_tagline">Un producto de Centinela Labs.</p>
+      </div>
+      <p class="site-footer__legal" data-i18n="footer_legal">El tratamiento de datos de imagen y biometría se realiza conforme a la Ley N.° 29733 de Protección de Datos Personales (Perú).</p>
+      <p class="site-footer__meta" data-i18n="footer_meta">Proyecto académico, Ingeniería de Software, UPC.</p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
