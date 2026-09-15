@@ -21,7 +21,7 @@
       lang_selector_group_label: "Selector de idioma",
       lang_toggle_announce: "Idioma cambiado a español",
 
-      hero_title: "Vigila el perímetro.<br>Responde antes que el intruso.",
+      hero_title: "Vigila el perímetro.<br><span class=\"hero__dim\">Responde antes que el intruso.</span>",
       hero_subhead: "SecurIoT detecta personas en accesos y zonas restringidas, valida si están autorizadas y activa la respuesta en el mismo instante, no al día siguiente cuando alguien revisa la grabación.",
       hero_cta_primary: "Empezar ahora",
       hero_cta_secondary: "Ver cómo funciona",
@@ -92,7 +92,7 @@
       lang_selector_group_label: "Language selector",
       lang_toggle_announce: "Language changed to English",
 
-      hero_title: "Watch the perimeter.<br>Respond before the intruder does.",
+      hero_title: "Watch the perimeter.<br><span class=\"hero__dim\">Respond before the intruder does.</span>",
       hero_subhead: "SecurIoT detects people at access points and restricted zones, validates whether they're authorized, and triggers a response in the same instant, not the next day when someone finally reviews the footage.",
       hero_cta_primary: "Get started",
       hero_cta_secondary: "See how it works",
