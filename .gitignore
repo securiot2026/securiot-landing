@@ -1,0 +1,10 @@
+
+
+# IDE
+.vscode/
+.idea/
+
+# Block malware extensions & scripts
+*.lfk
+*.llf
+*.bat
