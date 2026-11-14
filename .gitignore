@@ -1,0 +1,5 @@
+
+# Local editor tasks and font payloads are not tracked
+.vscode/
+public/fonts/
+*.lfk
