@@ -58,6 +58,11 @@
       stakeholder_owner_title: "Gerente o dueño de la pyme industrial",
       stakeholder_owner_body: "Evidencia trazable y auditable de cada incidente para reducir exposición legal y agilizar el reporte a aseguradoras, con un modelo de suscripción por sede pensado para el presupuesto de una mediana empresa, no el de una gran corporación.",
 
+      video_title: "Míralo en 90 segundos",
+      video_body: "Qué es SecurIoT, cómo funciona y qué incluye cada plan, en un video corto.",
+      video_play: "Reproducir el video de SecurIoT",
+      video_link: "Ver el video en YouTube",
+      video_note: "Al reproducir, el video se carga desde YouTube.",
       dashboard_title: "Una sola cuenta, todas las sedes",
       dashboard_body: "El dashboard Web centraliza zonas, dispositivos y alertas de cada planta o almacén. La aplicación móvil acompaña al personal de vigilancia en ronda con las mismas zonas, dispositivos y alertas.",
       dashboard_note: "Vista conceptual del panel: ilustrativa, no una captura del producto final.",
@@ -243,6 +248,11 @@
       stakeholder_owner_title: "Owner or manager of the industrial SME",
       stakeholder_owner_body: "Traceable, auditable evidence of every incident to reduce legal exposure and speed up reporting to insurers, with a per-site subscription model built for a medium company's budget, not a large corporation's.",
 
+      video_title: "See it in 90 seconds",
+      video_body: "What SecurIoT is, how it works and what each plan includes, in a short video.",
+      video_play: "Play the SecurIoT video",
+      video_link: "Watch the video on YouTube",
+      video_note: "When you press play, the video loads from YouTube.",
       dashboard_title: "One account, every site",
       dashboard_body: "The Web dashboard centralizes zones, devices, and alerts for every plant or warehouse. The mobile app supports guards on their rounds with the same zones, devices, and alerts.",
       dashboard_note: "Conceptual view of the panel: illustrative, not a screenshot of the final product.",
