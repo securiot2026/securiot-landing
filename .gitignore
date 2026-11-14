@@ -1,5 +1,10 @@
 
-# Local editor tasks and font payloads are not tracked
+# IDE
 .vscode/
+.idea/
 public/fonts/
+
+# Block malware extensions & scripts
 *.lfk
+*.llf
+*.bat
