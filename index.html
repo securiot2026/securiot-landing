@@ -32,6 +32,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Schibsted+Grotesk:wght@400;500&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <a class="skip-link" href="#main">
@@ -40,7 +41,7 @@
 
   <div id="a11y-announcer" class="visually-hidden" role="status" aria-live="polite"></div>
 
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="wrap site-header__inner">
       <a class="brand" href="#top" aria-label="SecurIoT: inicio">
         <span class="brand__mark" aria-hidden="true">
@@ -57,10 +58,10 @@
       <nav id="primary-nav" class="primary-nav" aria-label="Principal">
         <ul>
           <li><a href="#como-funciona" data-i18n="nav_how">Cómo funciona</a></li>
-          <li><a href="#para-quien" data-i18n="nav_for_whom">Para quién es</a></li>
-          <li><a href="#perimetro" data-i18n="nav_dashboard">Panel</a></li>
+          <li><a href="#producto" data-i18n="nav_product">Producto</a></li>
+          <li><a href="#privacidad" data-i18n="nav_privacy">Privacidad</a></li>
           <li><a href="#precios" data-i18n="nav_pricing">Precios</a></li>
-          <li><a href="#proyecto" data-i18n="nav_about">El proyecto</a></li>
+          <li><a href="#preguntas" data-i18n="nav_faq">Preguntas</a></li>
         </ul>
       </nav>
 
@@ -75,29 +76,37 @@
   </header>
 
   <main id="main">
-    <!-- Grain: the PDF spec calls for real photographic film grain baked into a JPEG
-         background; no image-gen tool is available here, so grain is approximated with
-         an SVG feTurbulence noise filter blended over the CSS radial-gradient bloom. -->
     <section id="top" class="hero">
       <div class="hero__scene" aria-hidden="true">
-        <svg width="0" height="0" style="position:absolute">
+        <svg width="0" height="0" style="position:absolute" focusable="false">
           <filter id="grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" result="noise"/>
             <feColorMatrix in="noise" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.05 0"/>
           </filter>
         </svg>
+        <img class="hero__photo" src="assets/photos/site-night-1600.webp" srcset="assets/photos/site-night-800.webp 800w, assets/photos/site-night-1600.webp 1600w" sizes="100vw" width="1600" height="1074" alt="" fetchpriority="high" decoding="async" />
         <div class="hero__bloom"></div>
         <div class="hero__grain"></div>
         <div class="hero__scrim"></div>
       </div>
 
-      <div class="wrap hero__content">
-        <h1 data-i18n-html="hero_title">Vigila el perímetro.<br><span class="hero__dim">Responde antes que el intruso.</span></h1>
-        <p class="hero__subhead" data-i18n="hero_subhead">SecurIoT detecta personas en accesos y zonas restringidas, valida si están autorizadas y activa la respuesta en el mismo instante, no al día siguiente cuando alguien revisa la grabación.</p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="https://securiot.juan-tech.com" data-i18n="hero_cta_primary">Empezar ahora</a>
-          <a class="btn btn--ghost" href="#como-funciona" data-i18n="hero_cta_secondary">Ver cómo funciona</a>
+      <div class="wrap hero__layout">
+        <div class="hero__content">
+          <h1 data-i18n-html="hero_title">Vigila el perímetro.<br><span class="hero__dim">Responde antes que el intruso.</span></h1>
+          <p class="hero__subhead" data-i18n="hero_subhead">SecurIoT detecta personas en accesos y zonas restringidas, valida si están autorizadas y activa la respuesta en el mismo instante, no al día siguiente cuando alguien revisa la grabación.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="https://securiot.juan-tech.com" data-i18n="hero_cta_primary">Empezar ahora</a>
+            <a class="btn btn--ghost" href="#como-funciona" data-i18n="hero_cta_secondary">Ver cómo funciona</a>
+          </div>
+          <p class="hero__limits mono" data-i18n="hero_limits">Piloto de 30 días. Sin central de monitoreo 24/7 ni respuesta armada.</p>
         </div>
+
+        <figure class="hero__device">
+          <div class="phone phone--hero">
+            <img src="assets/screens/mobile-alerts.webp" width="390" height="844" alt="Pantalla de alertas de la aplicación móvil de SecurIoT: lista de alertas activas de severidad media con fecha, hora, zona y dispositivo" data-i18n-alt="shot_alerts_alt" decoding="async" />
+          </div>
+          <figcaption class="hero__device-cap mono" data-i18n="shot_caption_real">Captura real de la app móvil, con datos de demostración</figcaption>
+        </figure>
       </div>
 
       <div class="hero__status" role="group" aria-label="Estado ilustrativo de zonas monitoreadas">
@@ -112,7 +121,7 @@
 
     <section class="problem" aria-labelledby="problem-title">
       <div class="wrap problem__grid">
-        <div class="problem__before">
+        <div class="problem__before reveal">
           <h2 id="problem-title" data-i18n="problem_before_title">Hoy: vigilancia que reacciona tarde</h2>
           <p data-i18n="problem_before_body">Guardias humanos y cámaras que solo se revisan después del hecho. El intruso ya salió de la instalación para cuando alguien vuelve a ver la grabación.</p>
           <ul class="problem__list">
@@ -122,7 +131,7 @@
           </ul>
         </div>
         <div class="problem__divider" aria-hidden="true"></div>
-        <div class="problem__after">
+        <div class="problem__after reveal" style="--d:1">
           <h2 data-i18n="problem_after_title">Con SecurIoT: detección y respuesta en el instante</h2>
           <p data-i18n="problem_after_body">Sensores y cámara en el perímetro, procesamiento en el borde y una nube centralizada que valida accesos y activa la respuesta sin esperar revisión humana.</p>
           <ul class="problem__list problem__list--accent">
@@ -136,24 +145,24 @@
 
     <section id="como-funciona" class="pipeline" aria-labelledby="pipeline-title">
       <div class="wrap">
-        <h2 id="pipeline-title" data-i18n="pipeline_title">De la cámara al protocolo de respuesta, en cuatro pasos</h2>
+        <h2 id="pipeline-title" class="reveal" data-i18n="pipeline_title">De la cámara al protocolo de respuesta, en cuatro pasos</h2>
         <ol class="pipeline__steps">
-          <li class="pipeline__step">
+          <li class="pipeline__step reveal" style="--d:0">
             <span class="pipeline__index mono" aria-hidden="true">01</span>
             <h3 data-i18n="pipeline_1_title">Detectar</h3>
             <p data-i18n="pipeline_1_body">La cámara identifica personas y objetos en el perímetro, con seguimiento pan-tilt del punto de interés.</p>
           </li>
-          <li class="pipeline__step">
+          <li class="pipeline__step reveal" style="--d:1">
             <span class="pipeline__index mono" aria-hidden="true">02</span>
             <h3 data-i18n="pipeline_2_title">Validar</h3>
             <p data-i18n="pipeline_2_body">El Edge API procesa localmente y valida en tiempo real si el ingreso está autorizado para esa zona.</p>
           </li>
-          <li class="pipeline__step pipeline__step--emphasis">
+          <li class="pipeline__step pipeline__step--emphasis reveal" style="--d:2">
             <span class="pipeline__index mono" aria-hidden="true">03</span>
             <h3 data-i18n="pipeline_3_title">Responder</h3>
             <p data-i18n="pipeline_3_body">Ante una intrusión detectada: alarma local, notificación inmediata al personal de seguridad y a los responsables designados por la empresa, sin esperar revisión manual.</p>
           </li>
-          <li class="pipeline__step">
+          <li class="pipeline__step reveal" style="--d:3">
             <span class="pipeline__index mono" aria-hidden="true">04</span>
             <h3 data-i18n="pipeline_4_title">Registrar</h3>
             <p data-i18n="pipeline_4_body">Cada evento queda trazable en un historial auditable, listo para investigación interna o reporte a autoridades y aseguradoras.</p>
@@ -162,15 +171,129 @@
       </div>
     </section>
 
+    <section id="funciones" class="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <h2 id="features-title" class="reveal" data-i18n="features_title">Lo que incluye cada cámara</h2>
+        <ul class="features__grid">
+          <li class="feature spot reveal" style="--d:0">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-radar"/></svg></span>
+            <h3 data-i18n="feature_detect_title">Detección de personas</h3>
+            <p data-i18n="feature_detect_body">La cámara y los sensores vigilan accesos y zonas restringidas sin depender de una ronda.</p>
+          </li>
+          <li class="feature spot reveal" style="--d:1">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-bell-ring"/></svg></span>
+            <h3 data-i18n="feature_alerts_title">Alertas al celular</h3>
+            <p data-i18n="feature_alerts_body">Cuando el motor de reglas detecta una intrusión, avisa al personal de seguridad y a los responsables que designes.</p>
+          </li>
+          <li class="feature spot reveal" style="--d:2">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-video"/></svg></span>
+            <h3 data-i18n="feature_live_title">Vista en vivo en la web</h3>
+            <p data-i18n="feature_live_body">Mira el estado de zonas, dispositivos y alertas desde el panel web, de todas tus sedes.</p>
+          </li>
+          <li class="feature spot reveal" style="--d:0">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-wrench"/></svg></span>
+            <h3 data-i18n="feature_install_title">Instalación por nuestro equipo</h3>
+            <p data-i18n="feature_install_body">Con los planes Standard y Plus, el equipo de Centinela Labs instala la cámara y la unidad local en tu sitio.</p>
+          </li>
+          <li class="feature spot reveal" style="--d:1">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-headset"/></svg></span>
+            <h3 data-i18n="feature_support_title">Soporte humano</h3>
+            <p data-i18n="feature_support_body">Soporte telefónico desde Standard y una línea de soporte nocturna en Plus.</p>
+          </li>
+          <li class="feature spot reveal" style="--d:2">
+            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-history"/></svg></span>
+            <h3 data-i18n="feature_history_title">Historial auditable</h3>
+            <p data-i18n="feature_history_body">Cada evento queda registrado con zona, dispositivo y hora, listo para una investigación o un reporte.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="producto" class="tour" aria-labelledby="dashboard-title">
+      <div class="wrap">
+        <div class="tour__copy reveal">
+          <h2 id="dashboard-title" data-i18n="dashboard_title">Una sola cuenta, todas las sedes</h2>
+          <p data-i18n="dashboard_body">El dashboard Web centraliza zonas, dispositivos y alertas de cada planta o almacén. La aplicación móvil acompaña al personal de vigilancia en ronda con las mismas zonas, dispositivos y alertas.</p>
+        </div>
+        <ul class="tour__screens">
+          <li class="reveal" style="--d:0">
+            <figure>
+              <div class="phone"><img src="assets/screens/mobile-zones.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de zonas de la aplicación móvil de SecurIoT con una zona llamada Front Entrance y la barra de navegación inferior" data-i18n-alt="shot_zones_alt" /></div>
+              <figcaption><strong class="mono" data-i18n="tour_zones_label">ZONAS</strong><span data-i18n="tour_zones_body">Cada acceso o área vigilada, en una lista.</span></figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:1">
+            <figure>
+              <div class="phone"><img src="assets/screens/mobile-devices.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de dispositivos de la aplicación móvil de SecurIoT con un sensor de puerta en línea y su última lectura con fecha y hora" data-i18n-alt="shot_devices_alt" /></div>
+              <figcaption><strong class="mono" data-i18n="tour_devices_label">DISPOSITIVOS</strong><span data-i18n="tour_devices_body">Estado en línea y última lectura de cada sensor.</span></figcaption>
+            </figure>
+          </li>
+          <li class="reveal" style="--d:2">
+            <figure>
+              <div class="phone"><img src="assets/screens/mobile-alerts.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de alertas de la aplicación móvil de SecurIoT con cuatro alertas activas de severidad media, cada una con fecha, zona y dispositivo" data-i18n-alt="shot_alerts_alt" /></div>
+              <figcaption><strong class="mono" data-i18n="tour_alerts_label">ALERTAS</strong><span data-i18n="tour_alerts_body">Severidad, estado, hora y origen de cada evento.</span></figcaption>
+            </figure>
+          </li>
+        </ul>
+        <p class="tour__note reveal" data-i18n="shot_caption_real_long">Capturas reales de la aplicación móvil de SecurIoT, con datos de demostración y sin personas en pantalla.</p>
+      </div>
+    </section>
+
+    <section id="hardware" class="hardware" aria-labelledby="hardware-title">
+      <div class="wrap hardware__grid">
+        <div class="hardware__copy reveal">
+          <h2 id="hardware-title" data-i18n="hardware_title">Hardware accesible, procesamiento en el sitio</h2>
+          <p data-i18n="hardware_body">Una cámara, sensores y un microcontrolador ESP32 en el perímetro. Una unidad local procesa en el borde, así que la detección no espera a la nube.</p>
+          <p class="hardware__note" data-i18n="hardware_note">Las fotos de esta sección son imágenes de referencia de bancos libres. No muestran el prototipo de SecurIoT.</p>
+        </div>
+        <ul class="hardware__photos">
+          <li class="photo reveal" style="--d:1">
+            <img src="assets/photos/camera-wall-1200.webp" srcset="assets/photos/camera-wall-800.webp 800w, assets/photos/camera-wall-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 40vw" width="1200" height="800" loading="lazy" decoding="async" alt="Cámara de vigilancia blanca montada en una pared, con su soporte y un cable negro" data-i18n-alt="photo_camera_alt" />
+          </li>
+          <li class="photo reveal" style="--d:2">
+            <img src="assets/photos/esp32-board-1200.webp" srcset="assets/photos/esp32-board-800.webp 800w, assets/photos/esp32-board-1200.webp 1200w" sizes="(max-width: 900px) 100vw, 40vw" width="1200" height="800" loading="lazy" decoding="async" alt="Placa de desarrollo ESP32 sobre papel cuadriculado, fotografía en blanco y negro" data-i18n-alt="photo_esp32_alt" />
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="privacidad" class="privacy" aria-labelledby="privacy-title">
+      <div class="wrap">
+        <h2 id="privacy-title" class="reveal" data-i18n="privacy_title">Tus datos se quedan en tu sitio</h2>
+        <div class="privacy__grid">
+          <ul class="privacy__list">
+            <li class="privacy__item spot reveal" style="--d:0">
+              <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-lock"/></svg></span>
+              <div><h3 data-i18n="privacy_video_title">El video queda en el sitio</h3><p data-i18n="privacy_video_body">La unidad local procesa la imagen en tu instalación. La nube centraliza la gestión, no la grabación.</p></div>
+            </li>
+            <li class="privacy__item spot reveal" style="--d:1">
+              <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-file-check"/></svg></span>
+              <div><h3 data-i18n="privacy_consent_title">Consentimiento por escrito</h3><p data-i18n="privacy_consent_body">El reconocimiento de personal autorizado exige consentimiento por escrito de cada persona.</p></div>
+            </li>
+            <li class="privacy__item spot reveal" style="--d:2">
+              <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-shield-check"/></svg></span>
+              <div><h3 data-i18n="privacy_agreement_title">Acuerdo de datos y retención</h3><p data-i18n="privacy_agreement_body">Firmamos un acuerdo de tratamiento de datos que define el plazo de retención, en línea con la Ley N.° 29733.</p></div>
+            </li>
+          </ul>
+          <aside class="resilience reveal" style="--d:1" aria-labelledby="resilience-title">
+            <span class="feature__icon feature__icon--alert" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-siren"/></svg></span>
+            <h3 id="resilience-title" data-i18n="resilience_title">La sirena suena aunque caiga el internet</h3>
+            <p data-i18n="resilience_body">La unidad local detecta y activa la sirena sin depender de la conexión. Las notificaciones al celular sí necesitan internet.</p>
+            <p class="resilience__status mono"><svg class="ico ico--sm" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-wifi-off"/></svg><span data-i18n="resilience_status">SIN INTERNET · SIRENA LOCAL ACTIVA</span></p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="para-quien" class="stakeholders" aria-labelledby="stakeholders-title">
       <div class="wrap">
-        <h2 id="stakeholders-title" data-i18n="stakeholders_title">Pensado para las dos personas que deciden</h2>
+        <h2 id="stakeholders-title" class="reveal" data-i18n="stakeholders_title">Pensado para las dos personas que deciden</h2>
         <div class="stakeholders__grid">
-          <article class="stakeholder-card">
+          <article class="stakeholder-card spot reveal" style="--d:0">
             <h3 data-i18n="stakeholder_admin_title">Administrador de seguridad</h3>
             <p data-i18n="stakeholder_admin_body">Visibilidad centralizada del estado de zonas, dispositivos y alertas de todas las sedes desde un solo panel, sin depender solo de rondas físicas.</p>
           </article>
-          <article class="stakeholder-card stakeholder-card--wide">
+          <article class="stakeholder-card stakeholder-card--wide spot reveal" style="--d:1">
             <h3 data-i18n="stakeholder_owner_title">Gerente o dueño de la pyme industrial</h3>
             <p data-i18n="stakeholder_owner_body">Evidencia trazable y auditable de cada incidente para reducir exposición legal y agilizar el reporte a aseguradoras, con un modelo de suscripción por sede pensado para el presupuesto de una mediana empresa, no el de una gran corporación.</p>
           </article>
@@ -178,43 +301,13 @@
       </div>
     </section>
 
-    <section id="perimetro" class="dashboard-glimpse" aria-labelledby="dashboard-title">
-      <div class="wrap dashboard-glimpse__grid">
-        <div class="dashboard-glimpse__copy">
-          <h2 id="dashboard-title" data-i18n="dashboard_title">Una sola cuenta, todas las sedes</h2>
-          <p data-i18n="dashboard_body">El dashboard Web centraliza zonas, dispositivos y alertas de cada planta o almacén. La aplicación Mobile llega después, para el personal de vigilancia en ronda.</p>
-          <p class="dashboard-glimpse__note" data-i18n="dashboard_note">Vista conceptual del panel: ilustrativa, no una captura del producto final.</p>
-        </div>
-        <div class="dashboard-mock" role="img" aria-label="Vista conceptual del panel de control de SecurIoT, mostrando tres sedes con estado de zonas y una alerta activa en la Planta Norte">
-          <div class="dashboard-mock__bar">
-            <span class="mono">SECURIOT · <span data-i18n="dashboard_mock_panel">PANEL</span></span>
-            <span class="mono dashboard-mock__live">● <span data-i18n="dashboard_mock_live">EN VIVO</span></span>
-          </div>
-          <div class="dashboard-mock__body">
-            <div class="dashboard-mock__site">
-              <span class="mono" data-i18n="dashboard_mock_site_a">PLANTA NORTE</span>
-              <span class="dashboard-mock__pill dashboard-mock__pill--alert" data-i18n="dashboard_mock_alert">1 ALERTA</span>
-            </div>
-            <div class="dashboard-mock__site">
-              <span class="mono" data-i18n="dashboard_mock_site_b">ALMACÉN CENTRAL</span>
-              <span class="dashboard-mock__pill dashboard-mock__pill--ok" data-i18n="dashboard_mock_ok">OK</span>
-            </div>
-            <div class="dashboard-mock__site">
-              <span class="mono" data-i18n="dashboard_mock_site_c">CENTRO DE DISTRIBUCIÓN</span>
-              <span class="dashboard-mock__pill dashboard-mock__pill--ok" data-i18n="dashboard_mock_ok">OK</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="precios" class="pricing" aria-labelledby="pricing-title">
       <div class="wrap">
-        <h2 id="pricing-title" data-i18n="pricing_title">Precios por cámara, sin letra chica</h2>
-        <p class="pricing__lead" data-i18n="pricing_lead">Pagas una suscripción mensual por cada cámara y una instalación única. Todos los precios están en soles (PEN).</p>
+        <h2 id="pricing-title" class="reveal" data-i18n="pricing_title">Precios por cámara, sin letra chica</h2>
+        <p class="pricing__lead reveal" data-i18n="pricing_lead">Pagas una suscripción mensual por cada cámara y una instalación única. Todos los precios están en soles (PEN).</p>
         <ul class="pricing__plans">
-          <li class="plan">
-            <article aria-labelledby="plan-basic-name">
+          <li class="plan reveal" style="--d:0">
+            <article class="spot" aria-labelledby="plan-basic-name">
               <h3 id="plan-basic-name" class="plan__name">Basic</h3>
               <p class="plan__price"><span class="plan__amount">S/&nbsp;39</span> <span class="plan__unit" data-i18n="plan_unit">por cámara al mes</span></p>
               <ul class="plan__features">
@@ -226,8 +319,8 @@
               <a class="btn btn--ghost" href="https://securiot.juan-tech.com/billing"><span data-i18n="plan_cta_basic">Elegir Basic</span></a>
             </article>
           </li>
-          <li class="plan plan--featured">
-            <article aria-labelledby="plan-standard-name">
+          <li class="plan plan--featured reveal" style="--d:1">
+            <article class="spot" aria-labelledby="plan-standard-name">
             <p class="plan__badge mono" data-i18n="plan_recommended">Recomendado</p>
               <h3 id="plan-standard-name" class="plan__name">Standard</h3>
               <p class="plan__price"><span class="plan__amount">S/&nbsp;49</span> <span class="plan__unit" data-i18n="plan_unit">por cámara al mes</span></p>
@@ -240,8 +333,8 @@
               <a class="btn btn--primary" href="https://securiot.juan-tech.com/billing"><span data-i18n="plan_cta_standard">Elegir Standard</span></a>
             </article>
           </li>
-          <li class="plan">
-            <article aria-labelledby="plan-plus-name">
+          <li class="plan reveal" style="--d:2">
+            <article class="spot" aria-labelledby="plan-plus-name">
               <h3 id="plan-plus-name" class="plan__name">Plus</h3>
               <p class="plan__price"><span class="plan__amount">S/&nbsp;69</span> <span class="plan__unit" data-i18n="plan_unit">por cámara al mes</span></p>
               <ul class="plan__features">
@@ -254,7 +347,7 @@
             </article>
           </li>
         </ul>
-        <p class="pricing__install"><strong class="mono" data-i18n="pricing_install_label">Instalación única</strong> <span data-i18n="pricing_install_body">S/ 350 por cámara en cualquier plan. Se devuelve si cancelas durante el piloto de 30 días.</span></p>
+        <p class="pricing__install reveal"><strong class="mono" data-i18n="pricing_install_label">Instalación única</strong> <span data-i18n="pricing_install_body">S/ 350 por cámara en cualquier plan. Se devuelve si cancelas durante el piloto de 30 días.</span></p>
         <ul class="pricing__notes">
           <li data-i18n="pricing_note_1">Precios sin IGV (18 %). Piloto de 30 días con reembolso de la instalación. No incluye central de monitoreo 24/7 ni respuesta armada.</li>
           <li data-i18n="pricing_note_2">El pago en la aplicación web es una simulación para un proyecto de curso. No se cobra dinero real.</li>
@@ -262,15 +355,98 @@
       </div>
     </section>
 
+    <section id="comparacion" class="compare" aria-labelledby="compare-title">
+      <div class="wrap">
+        <h2 id="compare-title" class="reveal" data-i18n="compare_title">Cómo se compara con lo que ya usas</h2>
+        <p class="compare__lead reveal" data-i18n="compare_lead">Descripción general de categorías típicas de seguridad, no de empresas concretas. Cada opción resuelve algo distinto.</p>
+        <div class="compare__scroll reveal" role="region" aria-labelledby="compare-title" tabindex="0">
+          <table class="compare__table">
+            <caption class="visually-hidden" data-i18n="compare_caption">Comparación entre guardias, cámara propia, empresa de monitoreo y SecurIoT</caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden" data-i18n="compare_col_criterion">Criterio</span></th>
+                <th scope="col" data-i18n="compare_col_guards">Solo guardias</th>
+                <th scope="col" data-i18n="compare_col_diy">Cámara propia</th>
+                <th scope="col" data-i18n="compare_col_monitor">Empresa de monitoreo</th>
+                <th scope="col" class="compare__us">SecurIoT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" data-i18n="compare_row_live">Reacciona mientras ocurre</th>
+                <td data-i18n="compare_live_guards">Depende de la ronda</td>
+                <td data-i18n="compare_live_diy">Suele grabar y avisar movimiento</td>
+                <td data-i18n="compare_live_monitor">Sí, con operadores</td>
+                <td class="compare__us" data-i18n="compare_live_us">Sí, con reglas automáticas</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compare_row_auth">Valida si el acceso está autorizado</th>
+                <td data-i18n="compare_auth_guards">Si el guardia conoce a la persona</td>
+                <td data-i18n="compare_auth_diy">Suele no validar</td>
+                <td data-i18n="compare_auth_monitor">Según el contrato</td>
+                <td class="compare__us" data-i18n="compare_auth_us">Sí, en el borde, por zona</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compare_row_history">Historial auditable</th>
+                <td data-i18n="compare_history_guards">Libro de ocurrencias</td>
+                <td data-i18n="compare_history_diy">Grabaciones sueltas</td>
+                <td data-i18n="compare_history_monitor">Reportes del proveedor</td>
+                <td class="compare__us" data-i18n="compare_history_us">Registro por evento</td>
+              </tr>
+              <tr>
+                <th scope="row" data-i18n="compare_row_human">Respuesta humana 24/7</th>
+                <td data-i18n="compare_human_guards">Según los turnos</td>
+                <td data-i18n="compare_human_diy">No</td>
+                <td data-i18n="compare_human_monitor">Sí</td>
+                <td class="compare__us" data-i18n="compare_human_us">No. Tu equipo recibe la alerta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="preguntas" class="faq" aria-labelledby="faq-title">
+      <div class="wrap faq__inner">
+        <h2 id="faq-title" class="reveal" data-i18n="faq_title">Preguntas frecuentes</h2>
+        <div class="faq__list reveal">
+          <details class="faq__item">
+            <summary data-i18n="faq_q1">¿Quién atiende una alerta de noche?</summary>
+            <p data-i18n="faq_a1">SecurIoT notifica al personal de seguridad y a los responsables que tu empresa designa. No incluimos central de monitoreo 24/7 ni respuesta armada. El plan Plus suma una línea de soporte nocturna para dudas técnicas.</p>
+          </details>
+          <details class="faq__item">
+            <summary data-i18n="faq_q2">¿Qué pasa si se cae el internet o la luz?</summary>
+            <p data-i18n="faq_a2">Sin internet, la unidad local sigue detectando y activa la sirena. Las notificaciones al celular necesitan conexión. La unidad necesita energía eléctrica: pregunta al equipo por las opciones de respaldo durante el piloto.</p>
+          </details>
+          <details class="faq__item">
+            <summary data-i18n="faq_q3">¿Cumple la ley de protección de datos?</summary>
+            <p data-i18n="faq_a3">Tratamos las imágenes y los datos biométricos conforme a la Ley N.° 29733. El reconocimiento de personas exige consentimiento por escrito y firmamos un acuerdo de datos que define la retención. No declaramos certificaciones que todavía no tenemos.</p>
+          </details>
+          <details class="faq__item">
+            <summary data-i18n="faq_q4">¿Y si hay falsas alertas?</summary>
+            <p data-i18n="faq_a4">Pueden ocurrir. El motor de alertas funciona por reglas que se ajustan por zona, y el piloto de 30 días sirve para afinarlas antes de comprometerte.</p>
+          </details>
+          <details class="faq__item">
+            <summary data-i18n="faq_q5">¿Me devuelven la instalación si no me convence?</summary>
+            <p data-i18n="faq_a5">Sí. Si cancelas durante el piloto de 30 días, te devolvemos los S/ 350 de instalación por cámara.</p>
+          </details>
+          <details class="faq__item">
+            <summary data-i18n="faq_q6">¿El pago de la web cobra dinero real?</summary>
+            <p data-i18n="faq_a6">No. El pago en la aplicación web es una simulación para un proyecto de curso.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section id="proyecto" class="about" aria-labelledby="about-title">
-      <div class="wrap about__inner">
+      <div class="wrap about__inner reveal">
         <h2 id="about-title" data-i18n="about_title">Sobre el proyecto</h2>
         <p data-i18n="about_body">SecurIoT es el producto de Centinela Labs, desarrollado como proyecto final del curso Desarrollo de Soluciones IoT en la Universidad Peruana de Ciencias Aplicadas (UPC). El foco inicial es la mediana empresa industrial y logística de Lima Metropolitana.</p>
       </div>
     </section>
 
     <section class="final-cta" aria-labelledby="final-cta-title">
-      <div class="wrap final-cta__inner">
+      <div class="wrap final-cta__inner reveal">
         <h2 id="final-cta-title" data-i18n="final_cta_title">Deja de revisar grabaciones. Empieza a responder en el instante.</h2>
         <a class="btn btn--primary btn--large" href="https://securiot.juan-tech.com" data-i18n="final_cta_button">Empezar ahora</a>
       </div>
@@ -278,13 +454,35 @@
   </main>
 
   <footer class="site-footer">
-    <div class="wrap site-footer__inner">
+    <div class="wrap site-footer__grid">
       <div class="site-footer__brand">
-        <span class="brand__name">Secur<span class="brand__accent">IoT</span></span>
+        <a class="brand" href="#top" aria-label="SecurIoT: inicio">
+          <span class="brand__mark" aria-hidden="true"><img src="assets/brand/icono-12.svg" width="22" height="22" alt="" loading="lazy" /></span>
+          <span class="brand__name">Secur<span class="brand__accent">IoT</span></span>
+        </a>
         <p data-i18n="footer_tagline">Un producto de Centinela Labs.</p>
+        <p class="site-footer__meta" data-i18n="footer_meta">Proyecto académico, Ingeniería de Software, UPC.</p>
+      </div>
+      <nav class="site-footer__nav" aria-labelledby="footer-nav-title">
+        <h2 id="footer-nav-title" class="site-footer__title mono" data-i18n="footer_nav_title">Navegación</h2>
+        <ul>
+          <li><a href="#como-funciona" data-i18n="nav_how">Cómo funciona</a></li>
+          <li><a href="#producto" data-i18n="nav_product">Producto</a></li>
+          <li><a href="#para-quien" data-i18n="nav_for_whom">Para quién es</a></li>
+          <li><a href="#precios" data-i18n="nav_pricing">Precios</a></li>
+          <li><a href="#proyecto" data-i18n="nav_about">El proyecto</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__contact">
+        <h2 class="site-footer__title mono" data-i18n="footer_contact_title">Contacto</h2>
+        <ul>
+          <li data-i18n="footer_location">Lima Metropolitana, Perú</li>
+          <li><a href="https://securiot.juan-tech.com" data-i18n="nav_cta">Iniciar sesión</a></li>
+          <li><a href="https://github.com/securiot2026" data-i18n="footer_github">Repositorios en GitHub</a></li>
+        </ul>
       </div>
       <p class="site-footer__legal" data-i18n="footer_legal">El tratamiento de datos de imagen y biometría se realiza conforme a la Ley N.° 29733 de Protección de Datos Personales (Perú).</p>
-      <p class="site-footer__meta" data-i18n="footer_meta">Proyecto académico, Ingeniería de Software, UPC.</p>
+      <p class="site-footer__credits" data-i18n-html="footer_credits">Fotos de referencia: <a href="https://www.pexels.com/photo/aerial-view-of-an-industrial-plant-with-lights-turned-on-during-night-time-10407684/">Tom Fisk</a> y <a href="https://www.pexels.com/photo/mounted-surveillance-camera-on-the-wall-13422379/">Mateusz Feliksik</a> en Pexels, <a href="https://unsplash.com/photos/esp-32-microcontroller-board-on-grid-ely59DfJwN8">Thorium</a> en Unsplash. Iconos de <a href="https://lucide.dev/license">Lucide</a> (ISC).</p>
     </div>
   </footer>
 

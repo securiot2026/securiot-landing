@@ -22,6 +22,11 @@
       if (dict[key] !== undefined) el.innerHTML = dict[key];
     });
 
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      if (dict[key] !== undefined) el.setAttribute("alt", dict[key]);
+    });
+
     var langSwitch = document.getElementById("lang-switch");
     if (langSwitch) {
       langSwitch.setAttribute("aria-label", dict.lang_selector_group_label);
@@ -82,8 +87,59 @@
     });
   }
 
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  /* Header gains a blur and border once the page scrolls. */
+  function initHeader() {
+    var header = document.getElementById("site-header");
+    if (!header) return;
+    var ticking = false;
+    function update() {
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+
+  /* Scroll reveal: fade and rise once. Content is visible without JS or with reduced motion. */
+  function initReveal() {
+    var items = document.querySelectorAll(".reveal");
+    if (!items.length) return;
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      items.forEach(function (el) { el.classList.add("is-visible"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
+  /* Pointer spotlight on cards: fine pointers only, transforms and opacity via CSS variables. */
+  function initSpotlight() {
+    if (reduceMotion.matches || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    document.querySelectorAll(".spot").forEach(function (card) {
+      card.addEventListener("pointermove", function (event) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (event.clientX - rect.left) + "px");
+        card.style.setProperty("--my", (event.clientY - rect.top) + "px");
+      }, { passive: true });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initLocale();
     initNav();
+    initHeader();
+    initReveal();
+    initSpotlight();
   });
 })();
