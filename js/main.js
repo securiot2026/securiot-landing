@@ -27,6 +27,11 @@
       if (dict[key] !== undefined) el.setAttribute("alt", dict[key]);
     });
 
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-aria");
+      if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
+    });
+
     var langSwitch = document.getElementById("lang-switch");
     if (langSwitch) {
       langSwitch.setAttribute("aria-label", dict.lang_selector_group_label);
@@ -148,11 +153,32 @@
     });
   }
 
+  // The YouTube player loads only after the visitor presses play, so the page makes no request
+  // to YouTube and sets no cookies until then.
+  function initVideo() {
+    var frame = document.querySelector("[data-video-id]");
+    if (!frame) return;
+    var btn = frame.querySelector(".video__play");
+    if (!btn) return;
+    btn.addEventListener("click", function () {
+      var id = frame.getAttribute("data-video-id");
+      var iframe = document.createElement("iframe");
+      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&modestbranding=1";
+      iframe.title = btn.getAttribute("aria-label") || "Video";
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.replaceChild(iframe, btn);
+      iframe.focus();
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initLocale();
     initNav();
     initHeader();
     initReveal();
     initSpotlight();
+    initVideo();
   });
 })();
