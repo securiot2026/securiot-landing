@@ -104,23 +104,36 @@
     update();
   }
 
-  /* Scroll reveal: fade and rise once. Content is visible without JS or with reduced motion. */
+  /* Scroll reveal: fade and rise once. Content stays visible without JS or with reduced motion.
+     The hidden state only exists after this script marks the root as ready, and anything the
+     reader scrolled past (fast scroll, anchor jump, End key) is revealed too. */
   function initReveal() {
-    var items = document.querySelectorAll(".reveal");
-    if (!items.length) return;
-    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
-      items.forEach(function (el) { el.classList.add("is-visible"); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
+    var items = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+    if (!items.length || reduceMotion.matches) return;
+    document.documentElement.classList.add("reveal-ready");
+    var pending = items.slice();
+    var ticking = false;
+    function check() {
+      ticking = false;
+      var limit = window.innerHeight * 0.94;
+      pending = pending.filter(function (el) {
+        if (el.getBoundingClientRect().top < limit) {
+          el.classList.add("is-visible");
+          return false;
         }
+        return true;
       });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    items.forEach(function (el) { io.observe(el); });
+      if (!pending.length) {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+      }
+    }
+    function onScroll() {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(check); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    check();
   }
 
   /* Pointer spotlight on cards: fine pointers only, transforms and opacity via CSS variables. */
