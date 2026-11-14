@@ -1,6 +1,6 @@
 /* SecurIoT landing, direction: "grano y color sobre negro" (grain and color on black).
-   See DESIGN.md for the direction contract — seven color tokens, one background bloom
-   per screen (radial, blurred, grain on top), flat interface-state badges elsewhere. */
+   See DESIGN.md for the direction contract (seven color tokens, one background bloom
+   per screen (radial, blurred, grain on top), flat interface-state badges elsewhere). */
 
 :root {
   --marca: #1FD3C4;
@@ -229,7 +229,6 @@ a, button {
   position: relative;
   overflow: hidden;
   padding-top: 5.5rem;
-  padding-inline: 1.5rem;
   min-height: 92vh;
   display: flex;
   flex-direction: column;
@@ -242,7 +241,7 @@ a, button {
   z-index: 0;
 }
 /* The one dominant background bloom: marca teal blending toward señal, heavy blur,
-   darkening at the edges — never a flat interface color at this size/blur. */
+   darkening at the edges, never a flat interface color at this size/blur. */
 .hero__bloom {
   position: absolute;
   inset: -10%;
@@ -311,7 +310,7 @@ a, button {
   z-index: 1;
   border-top: 1px solid var(--line-soft);
   background: rgba(11, 14, 20, 0.7);
-  padding: 1rem 1.5rem 1.25rem;
+  padding: 1rem 0 1.25rem;
 }
 .hero__status-caption {
   width: min(1200px, 100% - 3rem);
@@ -327,7 +326,7 @@ a, button {
   flex-wrap: wrap;
   gap: 0.75rem 1.5rem;
 }
-/* Interface state: flat, no grain, no blur — precision over weather. */
+/* Interface state: flat, no grain, no blur: precision over weather. */
 .status-chip {
   display: inline-flex;
   align-items: center;
@@ -411,7 +410,7 @@ a, button {
 .problem__list--accent li::before { background: var(--marca); width: 10px; height: 2px; }
 
 /* ---------- Pipeline (how it works) ---------- */
-.pipeline { padding: 5.5rem 1.5rem; background: var(--noche-1); border-block: 1px solid var(--line-soft); }
+.pipeline { padding: 5.5rem 0; background: var(--noche-1); border-block: 1px solid var(--line-soft); }
 .pipeline h2 {
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.1rem);
@@ -572,7 +571,7 @@ a, button {
 
 /* ---------- Final CTA ---------- */
 .final-cta {
-  padding: 6rem 1.5rem;
+  padding: 6rem 0;
   background: var(--noche);
   border-top: 1px solid var(--line-soft);
   text-align: center;
@@ -750,7 +749,7 @@ a, button {
 .site-footer__nav a, .site-footer__contact a { display: inline-block; padding: 0.3rem 0; color: var(--texto); text-decoration: none; }
 .site-footer__nav a:hover, .site-footer__contact a:hover { color: var(--marca); text-decoration: underline; text-underline-offset: 3px; }
 .site-footer__legal, .site-footer__credits { grid-column: 1 / -1; color: var(--texto-mute); font-size: 0.78rem; max-width: 80ch; }
-.site-footer__credits a { color: var(--texto); text-underline-offset: 2px; }
+.site-footer__credits a { color: var(--texto); text-underline-offset: 2px; display: inline-block; padding-block: 0.4rem; }
 .site-footer__meta { margin-top: 0.5rem; }
 
 /* ---------- Cards: pointer spotlight (set by JS on fine pointers) ---------- */
@@ -769,8 +768,8 @@ a, button {
 
 /* ---------- Motion (opt-in, progressive enhancement) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--d, 0) * 90ms); }
-  .js .reveal.is-visible { opacity: 1; transform: none; }
+  .reveal-ready .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--d, 0) * 90ms); }
+  .reveal-ready .reveal.is-visible { opacity: 1; transform: none; }
   .hero__content > *, .hero__device { animation: hero-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .hero__content > :nth-child(2) { animation-delay: 0.08s; }
   .hero__content > :nth-child(3) { animation-delay: 0.16s; }
@@ -808,3 +807,124 @@ a, button {
 /* Featured plan badge floats on the card edge so all three prices line up. */
 .plan--featured article { position: relative; }
 .plan--featured .plan__badge { position: absolute; top: -13px; left: 2rem; }
+
+/* ---------- Below the hero: layout refinements ---------- */
+
+/* Shared two-column section head: title left, content right (desktop), stacked below 900px. */
+.features__layout, .faq__inner, .about__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1.5rem 4rem;
+  align-items: start;
+  max-width: none;
+}
+.features__layout > h2, .faq__inner > h2, .about__inner > h2 { position: sticky; top: 6rem; }
+.faq__list { margin-top: 0; }
+
+/* Pipeline: one rule per step, the response step carries the accent. */
+.pipeline__steps { gap: 0 2rem; }
+.pipeline__steps::before { display: none; }
+.pipeline__step { border-left: none; padding: 1.25rem 0 0; border-top: 1px solid var(--line-soft); }
+.pipeline__step:first-child { padding-left: 0; }
+.pipeline__step--emphasis { border-top: 2px solid var(--marca); margin-top: -1px; }
+.pipeline__index { background: none; padding-right: 0; }
+
+/* Features: plain ruled list, no card boxes. */
+.features__grid { margin-top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; }
+.feature { padding: 1.4rem 0 1.6rem; background: none; border: none; border-top: 1px solid var(--line-soft); border-radius: 0; gap: 0.5rem; }
+.feature h3 { font-size: 1.08rem; }
+
+/* Product tour: phones cropped to the part of the screen that has content. */
+.tour__screens { gap: 2.5rem; align-items: start; }
+.phone--crop {
+  width: min(100%, 250px);
+  aspect-ratio: 390 / 520;
+  padding: 8px 8px 0;
+  border-bottom: none;
+  border-radius: 34px 34px 0 0;
+  box-shadow: 0 -20px 60px -30px rgba(31, 211, 196, 0.35);
+  -webkit-mask-image: linear-gradient(#000 78%, transparent);
+  mask-image: linear-gradient(#000 78%, transparent);
+}
+.phone--crop img { border-radius: 26px 26px 0 0; object-position: top; }
+.tour__screens figcaption { text-align: left; align-self: stretch; max-width: none; padding-inline: 0.5rem; }
+.tour__screens figure { align-items: center; gap: 0.9rem; }
+.tour__screens figcaption { width: min(100%, 250px); align-self: center; padding-inline: 0; }
+
+/* Hardware: second photo drops a step so the pair does not read as a flat grid. */
+@media (min-width: 641px) { .photo:nth-child(2) { margin-top: 2.5rem; } }
+
+/* Privacy: ruled rows for the three commitments, the alert card stays the one boxed element. */
+.privacy__list { gap: 0; }
+.privacy__item { padding: 1.4rem 0; background: none; border: none; border-top: 1px solid var(--line-soft); border-radius: 0; }
+.privacy__item:hover { transform: none; }
+
+/* Stakeholders: two columns of text on a rule, no cards. */
+.stakeholders__grid { gap: 3rem; grid-template-columns: 1fr 1.6fr; }
+.stakeholder-card { background: none; border: none; border-top: 1px solid var(--line-soft); border-radius: 0; padding: 1.5rem 0 0; }
+.stakeholder-card--wide { border-top: 2px solid var(--marca); margin-top: -1px; }
+.stakeholder-card:hover { transform: none; }
+
+/* Pricing */
+.plan article { padding: 1.75rem; }
+
+/* Comparison: the SecurIoT column leads the stacked layout on narrow screens. */
+.compare__who { display: none; }
+.compare__table tbody tr:hover th, .compare__table tbody tr:hover td:not(.compare__us) { color: var(--texto); }
+@media (max-width: 720px) {
+  .compare__scroll { overflow: visible; border: none; }
+  .compare__table { min-width: 0; display: block; }
+  .compare__table thead { display: none; }
+  .compare__table tbody { display: grid; gap: 1rem; }
+  .compare__table tr { display: flex; flex-direction: column; border: 1px solid var(--line-soft); border-radius: var(--radius); background: var(--noche-1); overflow: hidden; }
+  .compare__table tbody th { padding: 0.9rem 1rem; border-bottom: 1px solid var(--line-soft); font-family: var(--font-display); font-weight: 700; }
+  .compare__table td { display: flex; gap: 1rem; justify-content: space-between; padding: 0.7rem 1rem; border-bottom: 1px solid var(--line-soft); }
+  .compare__table tr:last-child th, .compare__table tr:last-child td { border-bottom: 1px solid var(--line-soft); }
+  .compare__table tr td:last-child { border-bottom: none; }
+  .compare__table td.compare__us { order: -1; }
+  .compare__table .compare__who { display: block; flex: 0 0 8.5rem; font-size: 0.78rem; color: var(--texto-mute); }
+  .compare__table .compare__us .compare__who { color: var(--marca); }
+  .compare__table td > span:last-child { text-align: right; flex: 1; }
+}
+
+/* Footer */
+.site-footer__grid { grid-template-columns: 2fr 1fr 1fr; gap: 2rem 2.5rem; }
+.site-footer__nav ul, .site-footer__contact ul { gap: 0; }
+.site-footer__credits { margin-top: -0.5rem; }
+
+/* No-JS safety and print: nothing stays hidden. */
+@media print { .reveal { opacity: 1 !important; transform: none !important; } }
+
+@media (max-width: 900px) {
+  .features__layout, .faq__inner, .about__inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .features__layout > h2, .faq__inner > h2, .about__inner > h2 { position: static; }
+  .pipeline__steps { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
+  .pipeline__step:nth-child(3) { padding-left: 0; }
+  .stakeholders__grid { grid-template-columns: 1fr; gap: 2rem; }
+  .pricing__plans { max-width: none; }
+  .tour__screens { gap: 1.25rem; }
+}
+@media (max-width: 640px) {
+  .features__grid { grid-template-columns: 1fr; }
+  .pipeline__steps { grid-template-columns: 1fr; }
+  .pipeline__step { padding-top: 1.25rem; }
+  .pipeline__step:first-child { padding-top: 1.25rem; border-top: 1px solid var(--line-soft); }
+  .pipeline__step--emphasis:first-child { border-top: 2px solid var(--marca); }
+  .tour__screens { grid-template-columns: 1fr; gap: 2rem; }
+  .site-footer__grid { grid-template-columns: 1fr; }
+  .site-footer__nav a, .site-footer__contact a { padding: 0.4rem 0; }
+}
+.about__inner p { margin-top: 0.35rem; }
+.pricing__install { border: 1px solid var(--line-soft); }
+.phone--crop { overflow: hidden; }
+.phone--crop img { height: 100%; width: 100%; object-fit: cover; object-position: top; }
+.phone--crop { aspect-ratio: 390 / 290; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+
+/* Header: nothing shrinks or wraps on narrow screens; the login link leaves the bar below 480px
+   (the hero and closing CTA carry the same action). */
+.brand, .lang-switch, .nav-toggle { flex-shrink: 0; }
+.site-header__actions .btn { white-space: nowrap; }
+@media (max-width: 480px) {
+  .site-header__inner { gap: 0.75rem; }
+  .site-header__actions { display: none; }
+}

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate HTML
+        run: npx --yes htmlhint@1.1.4 index.html
+      - name: Local assets referenced by the page exist
+        run: node scripts/check-assets.mjs
+      - name: i18n dictionaries have the same keys in ES and EN
+        run: node scripts/check-i18n.mjs
+      - name: Image size budget (400 KB per file)
+        run: scripts/check-image-budget.sh 400
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the nginx image
+        run: docker build -t securiot-landing:ci .

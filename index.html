@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Schibsted+Grotesk:wght@400;500&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=20261114" />
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -172,36 +172,30 @@
     </section>
 
     <section id="funciones" class="features" aria-labelledby="features-title">
-      <div class="wrap">
+      <div class="wrap features__layout">
         <h2 id="features-title" class="reveal" data-i18n="features_title">Lo que incluye cada cámara</h2>
         <ul class="features__grid">
-          <li class="feature spot reveal" style="--d:0">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-radar"/></svg></span>
+          <li class="feature reveal" style="--d:0">
             <h3 data-i18n="feature_detect_title">Detección de personas</h3>
             <p data-i18n="feature_detect_body">La cámara y los sensores vigilan accesos y zonas restringidas sin depender de una ronda.</p>
           </li>
-          <li class="feature spot reveal" style="--d:1">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-bell-ring"/></svg></span>
+          <li class="feature reveal" style="--d:1">
             <h3 data-i18n="feature_alerts_title">Alertas al celular</h3>
             <p data-i18n="feature_alerts_body">Cuando el motor de reglas detecta una intrusión, avisa al personal de seguridad y a los responsables que designes.</p>
           </li>
-          <li class="feature spot reveal" style="--d:2">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-video"/></svg></span>
+          <li class="feature reveal" style="--d:2">
             <h3 data-i18n="feature_live_title">Vista en vivo en la web</h3>
             <p data-i18n="feature_live_body">Mira el estado de zonas, dispositivos y alertas desde el panel web, de todas tus sedes.</p>
           </li>
-          <li class="feature spot reveal" style="--d:0">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-wrench"/></svg></span>
+          <li class="feature reveal" style="--d:0">
             <h3 data-i18n="feature_install_title">Instalación por nuestro equipo</h3>
             <p data-i18n="feature_install_body">Con los planes Standard y Plus, el equipo de Centinela Labs instala la cámara y la unidad local en tu sitio.</p>
           </li>
-          <li class="feature spot reveal" style="--d:1">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-headset"/></svg></span>
+          <li class="feature reveal" style="--d:1">
             <h3 data-i18n="feature_support_title">Soporte humano</h3>
             <p data-i18n="feature_support_body">Soporte telefónico desde Standard y una línea de soporte nocturna en Plus.</p>
           </li>
-          <li class="feature spot reveal" style="--d:2">
-            <span class="feature__icon" aria-hidden="true"><svg class="ico" focusable="false"><use href="assets/icons/sprite.svg#i-history"/></svg></span>
+          <li class="feature reveal" style="--d:2">
             <h3 data-i18n="feature_history_title">Historial auditable</h3>
             <p data-i18n="feature_history_body">Cada evento queda registrado con zona, dispositivo y hora, listo para una investigación o un reporte.</p>
           </li>
@@ -218,19 +212,19 @@
         <ul class="tour__screens">
           <li class="reveal" style="--d:0">
             <figure>
-              <div class="phone"><img src="assets/screens/mobile-zones.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de zonas de la aplicación móvil de SecurIoT con una zona llamada Front Entrance y la barra de navegación inferior" data-i18n-alt="shot_zones_alt" /></div>
+              <div class="phone phone--crop"><img src="assets/screens/mobile-zones.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de zonas de la aplicación móvil de SecurIoT con una zona llamada Front Entrance" data-i18n-alt="shot_zones_alt" /></div>
               <figcaption><strong class="mono" data-i18n="tour_zones_label">ZONAS</strong><span data-i18n="tour_zones_body">Cada acceso o área vigilada, en una lista.</span></figcaption>
             </figure>
           </li>
           <li class="reveal" style="--d:1">
             <figure>
-              <div class="phone"><img src="assets/screens/mobile-devices.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de dispositivos de la aplicación móvil de SecurIoT con un sensor de puerta en línea y su última lectura con fecha y hora" data-i18n-alt="shot_devices_alt" /></div>
+              <div class="phone phone--crop"><img src="assets/screens/mobile-devices.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de dispositivos de la aplicación móvil de SecurIoT con un sensor de puerta en línea y su última lectura con fecha y hora" data-i18n-alt="shot_devices_alt" /></div>
               <figcaption><strong class="mono" data-i18n="tour_devices_label">DISPOSITIVOS</strong><span data-i18n="tour_devices_body">Estado en línea y última lectura de cada sensor.</span></figcaption>
             </figure>
           </li>
           <li class="reveal" style="--d:2">
             <figure>
-              <div class="phone"><img src="assets/screens/mobile-alerts.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de alertas de la aplicación móvil de SecurIoT con cuatro alertas activas de severidad media, cada una con fecha, zona y dispositivo" data-i18n-alt="shot_alerts_alt" /></div>
+              <div class="phone phone--crop"><img src="assets/screens/mobile-alerts.webp" width="390" height="844" loading="lazy" decoding="async" alt="Pantalla de alertas de la aplicación móvil de SecurIoT con cuatro alertas activas de severidad media, cada una con fecha, zona y dispositivo" data-i18n-alt="shot_alerts_alt" /></div>
               <figcaption><strong class="mono" data-i18n="tour_alerts_label">ALERTAS</strong><span data-i18n="tour_alerts_body">Severidad, estado, hora y origen de cada evento.</span></figcaption>
             </figure>
           </li>
@@ -289,11 +283,11 @@
       <div class="wrap">
         <h2 id="stakeholders-title" class="reveal" data-i18n="stakeholders_title">Pensado para las dos personas que deciden</h2>
         <div class="stakeholders__grid">
-          <article class="stakeholder-card spot reveal" style="--d:0">
+          <article class="stakeholder-card reveal" style="--d:0">
             <h3 data-i18n="stakeholder_admin_title">Administrador de seguridad</h3>
             <p data-i18n="stakeholder_admin_body">Visibilidad centralizada del estado de zonas, dispositivos y alertas de todas las sedes desde un solo panel, sin depender solo de rondas físicas.</p>
           </article>
-          <article class="stakeholder-card stakeholder-card--wide spot reveal" style="--d:1">
+          <article class="stakeholder-card stakeholder-card--wide reveal" style="--d:1">
             <h3 data-i18n="stakeholder_owner_title">Gerente o dueño de la pyme industrial</h3>
             <p data-i18n="stakeholder_owner_body">Evidencia trazable y auditable de cada incidente para reducir exposición legal y agilizar el reporte a aseguradoras, con un modelo de suscripción por sede pensado para el presupuesto de una mediana empresa, no el de una gran corporación.</p>
           </article>
@@ -374,31 +368,31 @@
             <tbody>
               <tr>
                 <th scope="row" data-i18n="compare_row_live">Reacciona mientras ocurre</th>
-                <td data-i18n="compare_live_guards">Depende de la ronda</td>
-                <td data-i18n="compare_live_diy">Suele grabar y avisar movimiento</td>
-                <td data-i18n="compare_live_monitor">Sí, con operadores</td>
-                <td class="compare__us" data-i18n="compare_live_us">Sí, con reglas automáticas</td>
+                <td><span class="compare__who" data-i18n="compare_col_guards"></span><span data-i18n="compare_live_guards">Depende de la ronda</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_diy"></span><span data-i18n="compare_live_diy">Suele grabar y avisar movimiento</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_monitor"></span><span data-i18n="compare_live_monitor">Sí, con operadores</span></td>
+                <td class="compare__us"><span class="compare__who">SecurIoT</span><span data-i18n="compare_live_us">Sí, con reglas automáticas</span></td>
               </tr>
               <tr>
                 <th scope="row" data-i18n="compare_row_auth">Valida si el acceso está autorizado</th>
-                <td data-i18n="compare_auth_guards">Si el guardia conoce a la persona</td>
-                <td data-i18n="compare_auth_diy">Suele no validar</td>
-                <td data-i18n="compare_auth_monitor">Según el contrato</td>
-                <td class="compare__us" data-i18n="compare_auth_us">Sí, en el borde, por zona</td>
+                <td><span class="compare__who" data-i18n="compare_col_guards"></span><span data-i18n="compare_auth_guards">Si el guardia conoce a la persona</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_diy"></span><span data-i18n="compare_auth_diy">Suele no validar</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_monitor"></span><span data-i18n="compare_auth_monitor">Según el contrato</span></td>
+                <td class="compare__us"><span class="compare__who">SecurIoT</span><span data-i18n="compare_auth_us">Sí, en el borde, por zona</span></td>
               </tr>
               <tr>
                 <th scope="row" data-i18n="compare_row_history">Historial auditable</th>
-                <td data-i18n="compare_history_guards">Libro de ocurrencias</td>
-                <td data-i18n="compare_history_diy">Grabaciones sueltas</td>
-                <td data-i18n="compare_history_monitor">Reportes del proveedor</td>
-                <td class="compare__us" data-i18n="compare_history_us">Registro por evento</td>
+                <td><span class="compare__who" data-i18n="compare_col_guards"></span><span data-i18n="compare_history_guards">Libro de ocurrencias</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_diy"></span><span data-i18n="compare_history_diy">Grabaciones sueltas</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_monitor"></span><span data-i18n="compare_history_monitor">Reportes del proveedor</span></td>
+                <td class="compare__us"><span class="compare__who">SecurIoT</span><span data-i18n="compare_history_us">Registro por evento</span></td>
               </tr>
               <tr>
                 <th scope="row" data-i18n="compare_row_human">Respuesta humana 24/7</th>
-                <td data-i18n="compare_human_guards">Según los turnos</td>
-                <td data-i18n="compare_human_diy">No</td>
-                <td data-i18n="compare_human_monitor">Sí</td>
-                <td class="compare__us" data-i18n="compare_human_us">No. Tu equipo recibe la alerta</td>
+                <td><span class="compare__who" data-i18n="compare_col_guards"></span><span data-i18n="compare_human_guards">Según los turnos</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_diy"></span><span data-i18n="compare_human_diy">No</span></td>
+                <td><span class="compare__who" data-i18n="compare_col_monitor"></span><span data-i18n="compare_human_monitor">Sí</span></td>
+                <td class="compare__us"><span class="compare__who">SecurIoT</span><span data-i18n="compare_human_us">No. Tu equipo recibe la alerta</span></td>
               </tr>
             </tbody>
           </table>
@@ -486,7 +480,7 @@
     </div>
   </footer>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=20261114"></script>
+  <script src="js/main.js?v=20261114"></script>
 </body>
 </html>
