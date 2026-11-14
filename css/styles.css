@@ -749,7 +749,7 @@ a, button {
 .site-footer__nav a, .site-footer__contact a { display: inline-block; padding: 0.3rem 0; color: var(--texto); text-decoration: none; }
 .site-footer__nav a:hover, .site-footer__contact a:hover { color: var(--marca); text-decoration: underline; text-underline-offset: 3px; }
 .site-footer__legal, .site-footer__credits { grid-column: 1 / -1; color: var(--texto-mute); font-size: 0.78rem; max-width: 80ch; }
-.site-footer__credits a { color: var(--texto); text-underline-offset: 2px; }
+.site-footer__credits a { color: var(--texto); text-underline-offset: 2px; display: inline-block; padding-block: 0.4rem; }
 .site-footer__meta { margin-top: 0.5rem; }
 
 /* ---------- Cards: pointer spotlight (set by JS on fine pointers) ---------- */
@@ -916,7 +916,9 @@ a, button {
 }
 .about__inner p { margin-top: 0.35rem; }
 .pricing__install { border: 1px solid var(--line-soft); }
-.phone--crop { aspect-ratio: 390 / 470; -webkit-mask-image: linear-gradient(#000 86%, transparent); mask-image: linear-gradient(#000 86%, transparent); }
+.phone--crop { overflow: hidden; }
+.phone--crop img { height: 100%; width: 100%; object-fit: cover; object-position: top; }
+.phone--crop { aspect-ratio: 390 / 290; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
 
 /* Header: nothing shrinks or wraps on narrow screens; the login link leaves the bar below 480px
    (the hero and closing CTA carry the same action). */
